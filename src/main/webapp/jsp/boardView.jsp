@@ -97,7 +97,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 
-						<a href="${cp }/userForm" class="btn btn-default pull-right">새 글 등록</a>
+						<a href="${cp }/postNew" class="btn btn-default pull-right">새 글 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">

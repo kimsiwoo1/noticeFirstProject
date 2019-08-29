@@ -1,6 +1,8 @@
 package kr.or.ddit.board.web;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +32,7 @@ public class NoticeModifyController extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		String boardNm = request.getParameter("boardNm");
 		String use = request.getParameter("boardSelect");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));

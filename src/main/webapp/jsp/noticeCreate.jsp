@@ -65,11 +65,11 @@
 								<select id="boardSelect" name="boardSelect">
 									<option value="1">사용</option>
 									<option value="0">미사용</option>
-								</select> <input type="button" id="btnCreate" value="생성" /><br><br>
+								</select> <input type="submit" id="btnCreate" value="생성" /><br><br>
 							</form>
 							
-							<form id="frm2" action="${cp }/noticeModify">
-								<c:forEach items="${list }" var="board">
+							<c:forEach items="${list }" var="board">
+								<form id="frm" action="${cp }/noticeModify">
 									게시판 이름 <input type="text" id="boardNm" name="boardNm" value="${board.boardNm }"/>
 									<input type="hidden" id="boardNo" name="boardNo" value="${board.boardNo }" />
 									<select id="boardSelect" name="boardSelect">									
@@ -84,10 +84,9 @@
 									      </c:when>
 									   </c:choose>
 									</select> 
-									<input type="button" id="btnModify" value="수정" /><br><br>
-								</c:forEach>
-							</form>
-							
+									<input type="submit" id="btnModify" value="수정" /><br><br>
+								</form>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

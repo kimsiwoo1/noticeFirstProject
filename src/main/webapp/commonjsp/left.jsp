@@ -14,7 +14,14 @@
 	<!-- a tag : get method -->
 	<li class="active"><a href="${cp }/noticeCreat">게시판 생성 <span class="sr-only">(current)</span></a></li>
 	<c:forEach items="${list }" var="board" varStatus="loop">
-		<li class="active"><a href="${cp }/boardView?boardNo=${board.boardNo }">${board.boardNm } <span class="sr-only">(current)</span></a>
-		</li>
+		<c:if test="${board.use == '0' }">
+			<li class="disabled"><a href="javascript:void(0)">${board.boardNm } <span class="sr-only">(current)</span></a>
+			</li>
+		</c:if>
+		
+		<c:if test="${board.use == '1' }">
+			<li class="active"><a href="${cp }/boardView?boardNo=${board.boardNo }">${board.boardNm } <span class="sr-only">(current)</span></a>
+			</li>
+		</c:if>
 	</c:forEach>
 </ul>
