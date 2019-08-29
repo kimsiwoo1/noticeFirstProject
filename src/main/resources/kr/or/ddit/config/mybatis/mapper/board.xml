@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<insert id="insertBoard" parameterType="boardVo">
+		insert into boardpro(boardNo, boardNm, use, userId, boardDate) 
+		values(boardpro_SEQ.nextVal, #{boardNm}, #{use}, #{userId}, sysdate)
+	</insert>
+	
+	<select id="getAllBoard" resultType="boardVo">
+		select * from boardpro
+	</select>
+	
+	<select id="getBoard" parameterType="Integer" resultType="boardVo">
+		select * from boardpro where boardno=#{boardNo}
+	</select>
+	
+	<update id="updateBoard" parameterType="boardVo">
+		update boardpro set boardNm=#{boardNm}, use=#{use}
+		where boardNo=#{boardNo}
+	</update>
+</mapper>

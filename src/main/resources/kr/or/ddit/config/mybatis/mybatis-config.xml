@@ -6,6 +6,7 @@
 	<properties resource="kr/or/ddit/config/mybatis/db.properties"></properties>
 	<typeAliases>
 		<typeAlias alias="userVo" type="kr.or.ddit.user.model.User"/>
+		<typeAlias alias="boardVo" type="kr.or.ddit.board.model.BoardPro"/>
 		<typeAlias alias="page" type="kr.or.ddit.common.model.Page"/>
 	</typeAliases>
   <environments default="development">
@@ -21,5 +22,6 @@
   </environments>
   <mappers>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/board.xml"/>
   </mappers>
 </configuration>
