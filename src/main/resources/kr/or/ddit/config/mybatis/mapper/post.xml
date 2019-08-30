@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+	<insert id="insertPost" parameterType="postVo">
+		insert into postpro(postno, boardno, postnm, postcontents, userid, writedate, parentpostno, del) 
+		values(post_SEQ.nextVal, #{boardNo}, #{postNm}, #{postContents}, #{userId}, sysdate, #{parentPostNo}, #{del})
+	</insert>
+	
+	<select id="getPost" parameterType="Integer" resultType="postVo">
+		select * from postpro where boardno=#{boardNo}
+	</select>
+	
+
+</mapper>

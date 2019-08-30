@@ -23,9 +23,9 @@
 $(document).ready(function(){
 	
 	//사용자 정보 클릭시 이벤트 핸들러
-	$(".userTr").on("click", function(){
+	$(".postTr").on("click", function(){
 		
-		console.log("userTr click");
+		console.log("postTr click");
 		
 		//클릭된 tr 태그의 자식태그(td)중 첫번째 자식의 텍스트 문자열
 						
@@ -41,11 +41,11 @@ $(document).ready(function(){
 		//data속성명은 소문자로 치환된다!!
 		//data-userId --> $(this).data("userid");
 		//대소문자 주의!!!!!!
-		var dataValue = $(this).data("userid");
+		var dataValue = $(this).data("postno");
 		console.log("dataValue : " + dataValue);
 		
 		//input 태그에 값 설정
-		$("#userId").val(dataValue);
+		$("#postNo").val(dataValue);
 		
 		//form 태그이용 전송
 		console.log("serialize : "  + $("#frm").serialize());
@@ -75,7 +75,7 @@ $(document).ready(function(){
 
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">"${boardPro.boardNm }"</h2>
+						<h2 class="sub-header">${boardPro.boardNm }</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<tr>
@@ -85,13 +85,13 @@ $(document).ready(function(){
 									<th>작성일시</th>
 								</tr>
 
-								<c:forEach items="${userList }" var="user" varStatus="loop">
-									<tr class="userTr" data-userId="${user.userId }" >
-										<input type="hidden" value="${user.userId }"/>
-										<td>#</td>
-										<td>#</td>
-										<td>#</td>
-										<td>#</td>
+								<c:forEach items="${postList }" var="post" varStatus="loop">
+									<tr class="postTr" data-postNo="${post.postNo }" >
+										<input type="hidden" value="${post.postNo }"/>
+										<td>${post.postNo }</td>
+										<td>${post.postNm }</td>
+										<td>${post.userId }</td>
+										<td>${post.writeDate }</td>
 									</tr>
 								</c:forEach>
 							</table>

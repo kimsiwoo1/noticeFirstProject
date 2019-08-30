@@ -1,55 +1,56 @@
 package kr.or.ddit.post.model;
 
 public class Post {
-	private int postno;
-	private int boardno;
-	private String postnm;
-	private String postcontents;
-	private String userid;
-	private String writedate;
-	private int parentpostno;
+	private int postNo;
+	private int boardNo;
+	private String postNm;
+	private String postContents;
+	private String userId;
+	private String writeDate;
+	private int parentPostNo;
 	private String del;
-	public int getPostno() {
-		return postno;
+	
+	public int getPostNo() {
+		return postNo;
 	}
-	public void setPostno(int postno) {
-		this.postno = postno;
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
 	}
-	public int getBoardno() {
-		return boardno;
+	public int getBoardNo() {
+		return boardNo;
 	}
-	public void setBoardno(int boardno) {
-		this.boardno = boardno;
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
 	}
-	public String getPostnm() {
-		return postnm;
+	public String getPostNm() {
+		return postNm;
 	}
-	public void setPostnm(String postnm) {
-		this.postnm = postnm;
+	public void setPostNm(String postNm) {
+		this.postNm = postNm;
 	}
-	public String getPostcontents() {
-		return postcontents;
+	public String getPostContents() {
+		return postContents;
 	}
-	public void setPostcontents(String postcontents) {
-		this.postcontents = postcontents;
+	public void setPostContents(String postContents) {
+		this.postContents = postContents;
 	}
-	public String getUserid() {
-		return userid;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getWritedate() {
-		return writedate;
+	public String getWriteDate() {
+		return writeDate;
 	}
-	public void setWritedate(String writedate) {
-		this.writedate = writedate;
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
 	}
-	public int getParentpostno() {
-		return parentpostno;
+	public int getParentPostNo() {
+		return parentPostNo;
 	}
-	public void setParentpostno(int parentpostno) {
-		this.parentpostno = parentpostno;
+	public void setParentPostNo(int parentPostNo) {
+		this.parentPostNo = parentPostNo;
 	}
 	public String getDel() {
 		return del;
@@ -57,12 +58,15 @@ public class Post {
 	public void setDel(String del) {
 		this.del = del;
 	}
-	
 	@Override
 	public String toString() {
-		return "Post [postno=" + postno + ", boardno=" + boardno + ", postnm=" + postnm + ", postcontents="
-				+ postcontents + ", userid=" + userid + ", writedate=" + writedate + ", parentpostno=" + parentpostno
+		return "Post [postNo=" + postNo + ", boardNo=" + boardNo + ", postNm=" + postNm + ", postContents="
+				+ postContents + ", userId=" + userId + ", writeDate=" + writeDate + ", parentPostNo=" + parentPostNo
 				+ ", del=" + del + "]";
 	}
 	
+	
+	
 }
+	
+
