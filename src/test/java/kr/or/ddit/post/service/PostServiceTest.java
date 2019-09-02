@@ -25,9 +25,8 @@ public class PostServiceTest {
 //		post.setDel("0");
 //		post.setPostContents("ashhrr35");
 //		post.setPostNm("제목테스트2");
-//		post.setBoardNo(4);
+//		post.setBoardNo(1);
 //		post.setUserId("brown");
-//		post.setParentPostNo(1);
 //		/***When***/
 //		
 //		int insertCnt = service.insertPost(post);
@@ -45,7 +44,18 @@ public class PostServiceTest {
 		List<Post> list = service.getPost(5);
 		
 		/***Then***/
-		assertEquals(1, list.size());		
+		assertEquals(0, list.size());		
+	}
+	
+	@Test
+	public void getDetailPostTest() {
+		/***Given***/
+		
+		/***When***/
+		Post post = service.getDetailPost(4);
+		
+		/***Then***/
+		assertEquals("제목테스트2", post.getPostNm());		
 	}
 
 }

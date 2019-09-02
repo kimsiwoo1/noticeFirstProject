@@ -19,4 +19,9 @@ public class PostDao implements IPostDao {
 		return sqlSession.selectList("post.getPost", boardNo);
 	}
 
+	@Override
+	public Post getDetailPost(SqlSession sqlSession, int postNo) {
+		return sqlSession.selectOne("post.getDetailPost", postNo);
+	}
+
 }

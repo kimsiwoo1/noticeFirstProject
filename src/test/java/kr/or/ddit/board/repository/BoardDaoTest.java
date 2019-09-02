@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.board.model.BoardPro;
+import kr.or.ddit.post.model.Post;
+import kr.or.ddit.post.repository.PostDao;
 import kr.or.ddit.user.model.User;
 import kr.or.ddit.user.repository.IUserDao;
 import kr.or.ddit.user.repository.UserDao;
@@ -37,21 +39,21 @@ public class BoardDaoTest {
 		sqlSession.close();
 	}
 
-//	@Test
-//	public void insertBoardTest() {
-//		/***Given***/
-//		BoardPro boardPro = new BoardPro();
-//		boardPro.setBoardNm("이름테스트");
-//		boardPro.setUse("1");
-//		boardPro.setUserId("brown");
-//		
-//		/***When***/
-//		int insertCnt = boardDao.insertBoard(sqlSession, boardPro);
-//		sqlSession.commit();
-//		
-//		/***Then***/
-//		assertEquals(1, insertCnt);
-//	}
+	@Test
+	public void insertBoardTest() {
+		/***Given***/
+		BoardPro boardPro = new BoardPro();
+		boardPro.setBoardNm("이름테스트");
+		boardPro.setUse("1");
+		boardPro.setUserId("brown");
+		
+		/***When***/
+		int insertCnt = boardDao.insertBoard(sqlSession, boardPro);
+		sqlSession.commit();
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
+	}
 	
 	@Test
 	public void getAllBoardTest() {

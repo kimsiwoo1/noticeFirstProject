@@ -58,7 +58,18 @@ public class PostDaoTest {
 		List<Post> list = dao.getPost(sqlSession, 5);
 		
 		/***Then***/
-		assertEquals(1, list.size());		
+		assertEquals(0, list.size());		
+	}
+	
+	@Test
+	public void getDetailPostTest() {
+		/***Given***/
+		
+		/***When***/
+		Post post = dao.getDetailPost(sqlSession, 4);
+		
+		/***Then***/
+		assertEquals("제목테스트2", post.getPostNm());		
 	}
 
 }

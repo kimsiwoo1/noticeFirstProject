@@ -58,7 +58,7 @@
 
 				<div class="blog-header">
 					<h1 class="blog-title">
-						글 작성<br>
+						글 수정<br>
 					</h1>
 				</div>
 

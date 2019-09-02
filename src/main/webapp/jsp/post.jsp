@@ -17,15 +17,7 @@
 
 <%@ include file="/commonjsp/basicLib.jsp"%>
 <script>
-	$(function() {
-		$('#btnCreate').on('click', function() {
-			$('#frm').submit();
-		})
-		
-		$('.blog-post').on('click', '#btnModify', function() {
-			$('#frm2').submit();
-		})
-	})
+
 </script>
 <style>
 	label{
@@ -58,7 +50,7 @@
 
 				<div class="blog-header">
 					<h1 class="blog-title">
-						글 작성<br>
+						게시물<br>
 					</h1>
 				</div>
 
@@ -66,19 +58,19 @@
 
 					<div class="col-sm-8 blog-main">
 						<div class="blog-post">
-						<form action="${cp }/postNew" method="post" enctype="multipart/form-data">
+						<form action="${cp }/postModify" method="post" enctype="multipart/form-data">
 							<input type="hidden" id="no" name="no" value="${boardNo }">
 							<input type="hidden" id="userId" name="userId" value="<%=userId%>">
 							<label for="postNm">제목</label>
-							<input type="text" id="postNm" name="postNm">
+							<input type="hidden" id="postNm" name="postNm" value="${post.postNm }">
+							${post.postNm }
 							<br>
 							<label for="postContents">글내용</label>
-							<textarea rows="5" cols="40"id="postContents" name="postContents"></textarea>
+							<input type="hidden" id="postContents" name="postContents" value="${post.postContents }">
+							${post.postContents }
 							<br>
-							<label for="postContents">첨부파일</label>
-							<span id="fileArea"></span><br>
-							<input type="file" id="file" name="file">
-							<button>저장</button>
+							<button>수정</button>
+							<input type="button" id="delete" name="delete" value="삭제"/>
 						</form>
 						</div>
 					</div>

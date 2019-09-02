@@ -57,8 +57,8 @@ $(document).ready(function(){
 </head>
 
 <body>
-<form id="frm" action="${cp }/user" method="get">
-	<input type="hidden" id="userId" name="userId" />
+<form id="frm" action="${cp }/post" method="get">
+	<input type="hidden" id="postNo" name="postNo" />
 </form>
 	
 	<!-- header -->
@@ -97,7 +97,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 
-						<a href="${cp }/postNew" class="btn btn-default pull-right">새 글 등록</a>
+						<a href="${cp }/postNew?boardNo=${boardPro.boardNo }" class="btn btn-default pull-right">새 글 등록</a>
 
 						<div class="text-center">
 							<ul class="pagination">
@@ -113,7 +113,7 @@ $(document).ready(function(){
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${cp }/userPagingList?page=${pageVo.page-1 }" aria-label="Previous"> 
+												<a href="${cp }/postNew?page=${pageVo.page-1 }" aria-label="Previous"> 
 													<span aria-hidden="true">&laquo;</span>
 												</a>
 											</li>
@@ -128,7 +128,7 @@ $(document).ready(function(){
 											<li class="active"><span>${page }</span></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${cp }/userPagingList?page=${page }">${page }</a></li>
+											<li><a href="${cp }/postNew?page=${page }">${page }</a></li>
 										</c:otherwise>
 									</c:choose>
 									
@@ -142,7 +142,7 @@ $(document).ready(function(){
 									</c:when>
 									<c:otherwise>
 										<li>
-											<a href="${cp }/userPagingList?page=${pageVo.page+1 }" aria-label="Next"> 
+											<a href="${cp }/postNew?page=${pageVo.page+1 }" aria-label="Next"> 
 												<span aria-hidden="true">&raquo;</span>
 											</a>
 										</li>

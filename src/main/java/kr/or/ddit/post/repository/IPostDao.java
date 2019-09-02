@@ -10,4 +10,6 @@ public interface IPostDao {
 	public int insertPost(SqlSession sqlSession, Post post);
 	
 	public List<Post> getPost(SqlSession sqlSession, int boardNo);
+	
+	public Post getDetailPost(SqlSession sqlSession, int postNo);
 }
