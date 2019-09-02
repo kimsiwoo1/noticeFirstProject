@@ -66,19 +66,21 @@
 
 					<div class="col-sm-8 blog-main">
 						<div class="blog-post">
-						<form action="${cp }/postNew" method="post" enctype="multipart/form-data">
+						<form action="${cp }/postModifyAction" method="post" enctype="multipart/form-data">
 							<input type="hidden" id="no" name="no" value="${boardNo }">
+							<input type="hidden" id="postNo" name="postNo" value="${params.postNo }">	
 							<input type="hidden" id="userId" name="userId" value="<%=userId%>">
 							<label for="postNm">제목</label>
-							<input type="text" id="postNm" name="postNm">
+							<input type="text" id="postNm" name="postNm" value="${params.postNm }">
 							<br>
 							<label for="postContents">글내용</label>
-							<textarea rows="5" cols="40"id="postContents" name="postContents"></textarea>
+							<textarea rows="5" cols="40"id="postContents" name="postContents">${params.postContents }</textarea>
+							<input type="hidden" id="postContents" name="postContents" value="${params.postContents }">
 							<br>
 							<label for="postContents">첨부파일</label>
 							<span id="fileArea"></span><br>
 							<input type="file" id="file" name="file">
-							<button>저장</button>
+							<button>수정</button>
 						</form>
 						</div>
 					</div>

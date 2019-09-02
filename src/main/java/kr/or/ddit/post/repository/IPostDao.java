@@ -12,4 +12,6 @@ public interface IPostDao {
 	public List<Post> getPost(SqlSession sqlSession, int boardNo);
 	
 	public Post getDetailPost(SqlSession sqlSession, int postNo);
+	
+	public int updatePost(SqlSession sqlSession, Post post);
 }

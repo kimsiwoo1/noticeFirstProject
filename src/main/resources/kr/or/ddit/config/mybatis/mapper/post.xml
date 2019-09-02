@@ -17,5 +17,9 @@
 		select * from postpro where postno=#{postNo}
 	</select>
 	
+	<update id="updatePost" parameterType="postVo">
+		update postpro set postnm=#{postNm}, postcontents=#{postContents} where postno=#{postNo}
+	</update>
+	
 
 </mapper>

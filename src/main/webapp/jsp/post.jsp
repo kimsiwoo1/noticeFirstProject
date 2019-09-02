@@ -17,7 +17,11 @@
 
 <%@ include file="/commonjsp/basicLib.jsp"%>
 <script>
-
+	$(function(){
+		$('#delete').on("click", function(){
+			
+		})
+	})
 </script>
 <style>
 	label{
@@ -60,6 +64,7 @@
 						<div class="blog-post">
 						<form action="${cp }/postModify" method="post" enctype="multipart/form-data">
 							<input type="hidden" id="no" name="no" value="${boardNo }">
+							<input type="hidden" id="postNo" name="postNo" value="${post.postNo }">
 							<input type="hidden" id="userId" name="userId" value="<%=userId%>">
 							<label for="postNm">제목</label>
 							<input type="hidden" id="postNm" name="postNm" value="${post.postNm }">

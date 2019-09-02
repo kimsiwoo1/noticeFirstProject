@@ -57,5 +57,19 @@ public class PostServiceTest {
 		/***Then***/
 		assertEquals("제목테스트2", post.getPostNm());		
 	}
+	
+	@Test
+	public void updatePostTest() {
+		/***Given***/
+		Post post = new Post();
+		post.setPostNm("이름바꾼다아");
+		post.setPostContents("다 바꿔아");
+		post.setPostNo(4);
+		/***When***/
+		int updateCnt = service.updatePost(post);
+		
+		/***Then***/
+		assertEquals(1, updateCnt);		
+	}
 
 }

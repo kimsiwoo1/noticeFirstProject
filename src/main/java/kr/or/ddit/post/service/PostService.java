@@ -41,4 +41,13 @@ public class PostService implements IPostService {
 		return post;
 	}
 
+	@Override
+	public int updatePost(Post post) {
+		SqlSession sqlSession = MybatisUtil.getSession();
+		int updateCnt = dao.updatePost(sqlSession, post);
+		sqlSession.commit();
+		sqlSession.close();
+		return updateCnt;
+	}
+
 }

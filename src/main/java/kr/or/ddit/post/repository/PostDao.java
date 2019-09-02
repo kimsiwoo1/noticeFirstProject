@@ -24,4 +24,9 @@ public class PostDao implements IPostDao {
 		return sqlSession.selectOne("post.getDetailPost", postNo);
 	}
 
+	@Override
+	public int updatePost(SqlSession sqlSession, Post post) {
+		return sqlSession.update("post.updatePost", post);
+	}
+
 }

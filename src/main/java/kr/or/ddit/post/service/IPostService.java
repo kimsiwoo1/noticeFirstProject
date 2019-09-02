@@ -13,4 +13,6 @@ public interface IPostService {
 	public List<Post> getPost(int boardNo);
 	
 	public Post getDetailPost(int postNo);
+	
+	public int updatePost(Post post);
 }
