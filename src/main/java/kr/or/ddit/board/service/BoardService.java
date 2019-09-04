@@ -1,12 +1,15 @@
 package kr.or.ddit.board.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.board.model.BoardPro;
 import kr.or.ddit.board.repository.BoardDao;
 import kr.or.ddit.board.repository.IBoardDao;
+import kr.or.ddit.common.model.Page;
 import kr.or.ddit.util.MybatisUtil;
 
 public class BoardService implements IBoardService {

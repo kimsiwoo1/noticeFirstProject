@@ -19,7 +19,11 @@
 <script>
 	$(function(){
 		$('#delete').on("click", function(){
-			
+			location.href="${cp}/postDelete?postNo="+${post.postNo }+"&boardNo="+${boardNo}
+		})
+		
+		$('#answer').on("click", function(){
+			location.href="${cp}/postAnswer?postNo="+${post.postNo }+"&boardNo="+${boardNo}+"&gn="+${post.gn}
 		})
 	})
 </script>
@@ -63,7 +67,7 @@
 					<div class="col-sm-8 blog-main">
 						<div class="blog-post">
 						<form action="${cp }/postModify" method="post" enctype="multipart/form-data">
-							<input type="hidden" id="no" name="no" value="${boardNo }">
+							<input type="hidden" id="boardNo" name="boardNo" value="${boardNo }">
 							<input type="hidden" id="postNo" name="postNo" value="${post.postNo }">
 							<input type="hidden" id="userId" name="userId" value="<%=userId%>">
 							<label for="postNm">제목</label>
@@ -76,6 +80,7 @@
 							<br>
 							<button>수정</button>
 							<input type="button" id="delete" name="delete" value="삭제"/>
+							<input type="button" id="answer" name="answer" value="답글"/>
 						</form>
 						</div>
 					</div>

@@ -35,8 +35,9 @@ public class PostModifyActionController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		String postNm = request.getParameter("postNm");
-		String postContents = request.getParameter("postContents");
+		String postContents = request.getParameter("smarteditor");
 		
 		Post post = new Post();
 		post.setPostNm(postNm);
@@ -45,7 +46,7 @@ public class PostModifyActionController extends HttpServlet {
 		
 		postService.updatePost(post);
 		
-		response.sendRedirect(request.getContextPath() + "/post?postNo="+ postNo);
+		response.sendRedirect(request.getContextPath() + "/post?postNo="+ postNo+"&boardNo="+boardNo);
 	}
 
 }

@@ -32,6 +32,7 @@ public class PostModifyController extends HttpServlet {
 		String postNm = request.getParameter("postNm");
 		String postContents = request.getParameter("postContents");
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
 		logger.debug("postNm : {}", postNm);
 		logger.debug("postContents : {}", postContents);
@@ -41,6 +42,7 @@ public class PostModifyController extends HttpServlet {
 		params.put("postNm", postNm);
 		params.put("postContents", postContents);
 		params.put("postNo", postNo);
+		params.put("boardNo", boardNo);
 		
 		request.setAttribute("params", params);
 		request.getRequestDispatcher("jsp/postModify.jsp").forward(request, response);

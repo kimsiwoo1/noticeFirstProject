@@ -21,4 +21,5 @@
 		update boardpro set boardNm=#{boardNm}, use=#{use}
 		where boardNo=#{boardNo}
 	</update>
+	
 </mapper>

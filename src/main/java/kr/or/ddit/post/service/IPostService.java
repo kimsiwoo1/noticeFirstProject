@@ -2,6 +2,7 @@ package kr.or.ddit.post.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -15,4 +16,12 @@ public interface IPostService {
 	public Post getDetailPost(int postNo);
 	
 	public int updatePost(Post post);
+	
+	List<Post> getPostPagingList(Map<String, Object> params);
+	
+	int getPostTotalCnt(int boardNo);
+	
+	int updateGn(Map<String, Object> gnParams);
+	
+	int updateDel(Map<String, Object> delParams);
 }

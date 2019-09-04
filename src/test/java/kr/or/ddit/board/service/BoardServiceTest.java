@@ -3,12 +3,14 @@ package kr.or.ddit.board.service;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import kr.or.ddit.board.model.BoardPro;
+import kr.or.ddit.common.model.Page;
 import kr.or.ddit.user.model.User;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserService;
@@ -75,5 +77,6 @@ public class BoardServiceTest {
 		/***Then***/
 		assertEquals(1, updateCnt);		
 	}
+	
 
 }

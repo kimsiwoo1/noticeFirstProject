@@ -9,7 +9,15 @@ public class Post {
 	private String writeDate;
 	private int parentPostNo;
 	private String del;
+	private int gn;
 	
+	
+	public int getGn() {
+		return gn;
+	}
+	public void setGn(int gn) {
+		this.gn = gn;
+	}
 	public int getPostNo() {
 		return postNo;
 	}
@@ -62,8 +70,9 @@ public class Post {
 	public String toString() {
 		return "Post [postNo=" + postNo + ", boardNo=" + boardNo + ", postNm=" + postNm + ", postContents="
 				+ postContents + ", userId=" + userId + ", writeDate=" + writeDate + ", parentPostNo=" + parentPostNo
-				+ ", del=" + del + "]";
+				+ ", del=" + del + ", gn=" + gn + "]";
 	}
+	
 	
 	
 	

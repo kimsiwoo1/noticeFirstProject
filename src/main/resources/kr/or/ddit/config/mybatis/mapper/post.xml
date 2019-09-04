@@ -5,8 +5,12 @@
 <mapper namespace="post">
 
 	<insert id="insertPost" parameterType="postVo">
+		<selectKey keyProperty="postNo" resultType="Integer" order="BEFORE">
+			SELECT POST_SEQ.nextval FROM dual
+		</selectKey>
+		
 		insert into postpro(postno, boardno, postnm, postcontents, userid, writedate, parentpostno, del) 
-		values(POST_SEQ.NEXTVAL, #{boardNo}, #{postNm}, #{postContents}, #{userId}, sysdate, decode(#{parentPostNo}, 0, null), #{del})
+		values(#{postNo}, #{boardNo}, #{postNm}, #{postContents}, #{userId}, sysdate, decode(#{parentPostNo}, 0, null, #{parentPostNo}), #{del})
 	</insert>
 	
 	<select id="getPost" parameterType="Integer" resultType="postVo">
@@ -20,6 +24,45 @@
 	<update id="updatePost" parameterType="postVo">
 		update postpro set postnm=#{postNm}, postcontents=#{postContents} where postno=#{postNo}
 	</update>
+	
+	<select id="getPostPagingList" resultType="postVo" parameterType="map">
+<!--   	select a.*
+	from
+	    (select rownum rn, a.*
+	    from(select  a.*
+	        from postpro a
+	        where boardno = #{boardNo}
+	        order by writedate) a) a
+	where rn between #{pages.pagesize}*(#{pages.page}-1)+1 and #{pages.pagesize}*#{pages.page} -->
+	select a.*
+        from (select rownum rn, a.*
+                    from ( select POSTNO, PARENTPOSTNO, lpad(' ', (level-1)*4, ' ') || POSTNM POSTNM, USERID, WRITEDATE, level, DEL
+                                from POSTPRO
+                             where BOARDNO = #{boardNo}
+                             start with PARENTPOSTNO is null
+                             connect by prior POSTNO = PARENTPOSTNO
+                              order siblings by GN desc, POSTNO) a) a
+                 where rn between #{pages.pagesize}*(#{pages.page}-1)+1 and #{pages.pagesize}*#{pages.page}
+  </select>
+  
+  <!-- 사용자 전체 건수 조회 -->
+  <select id="getPostTotalCnt" resultType="Integer" parameterType="Integer">
+  	select count(*)
+	from postpro
+	where boardno = (select boardno
+					 from boardpro
+					 where boardno=#{boardNo})
+  </select>
+  
+  <update id="updateGn" parameterType="map">
+  	update postpro set gn=#{gn} where postno=#{postNo}
+  </update>
+  
+  <update id="updateDel" parameterType="map">
+  	update postpro set del=#{del} where postno=#{postNo}
+  </update>
+ 
+	
 	
 
 </mapper>

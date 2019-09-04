@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,14 +56,11 @@ public class PostNewController extends HttpServlet {
     	request.setCharacterEncoding("UTF-8");
     	
 		
-    	int boardNo = Integer.parseInt(request.getParameter("no"));
+    	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
     	String postNm = request.getParameter("postNm");
-    	String postContents = request.getParameter("postContents");
+    	String postContents = request.getParameter("smarteditor");
     	String userId = request.getParameter("userId");
-    	int postNo = 0;
-    	String writeDate = null;
-    	int parentPostNo = 0;
-    	String del = "1";
+    	
 		
 		Part picture = request.getPart("picture");
 		String filename = "";
@@ -78,21 +77,28 @@ public class PostNewController extends HttpServlet {
 		
 		logger.debug("user parameter : {}, {}, {}, {}", boardNo, postNm, postContents, userId);
 		
-		//사용자 등록
+		
+		//글 등록
 		Post post = new Post();
 		post.setBoardNo(boardNo);
 		post.setPostNm(postNm);
 		post.setPostContents(postContents);
 		post.setUserId(userId);
 		post.setParentPostNo(0);
-		post.setDel("1");
+		post.setDel("0");
 		
 		postService.insertPost(post);
+		int postNo = post.getPostNo();
+		int gn = postNo;
+		Map<String, Object> gnParams = new HashMap<String, Object>();
+		gnParams.put("postNo", postNo);
+		gnParams.put("gn", gn);
+		postService.updateGn(gnParams);
 		
-		request.getRequestDispatcher("jsp/post.jsp").forward(request, response);
-
-			
+		request.setAttribute("gn", gn);
+		logger.debug("postNo : {}", postNo);
 		
+		response.sendRedirect(request.getContextPath() +"/post?postNo="+postNo+"&boardNo="+boardNo+"&gn="+gn);
 		
 	}
 

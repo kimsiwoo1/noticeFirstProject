@@ -3,7 +3,9 @@ package kr.or.ddit.board.repository;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.board.model.BoardPro;
+import kr.or.ddit.common.model.Page;
 import kr.or.ddit.post.model.Post;
 import kr.or.ddit.post.repository.PostDao;
 import kr.or.ddit.user.model.User;
@@ -39,21 +42,21 @@ public class BoardDaoTest {
 		sqlSession.close();
 	}
 
-	@Test
-	public void insertBoardTest() {
-		/***Given***/
-		BoardPro boardPro = new BoardPro();
-		boardPro.setBoardNm("이름테스트");
-		boardPro.setUse("1");
-		boardPro.setUserId("brown");
-		
-		/***When***/
-		int insertCnt = boardDao.insertBoard(sqlSession, boardPro);
-		sqlSession.commit();
-		
-		/***Then***/
-		assertEquals(1, insertCnt);
-	}
+//	@Test
+//	public void insertBoardTest() {
+//		/***Given***/
+//		BoardPro boardPro = new BoardPro();
+//		boardPro.setBoardNm("이름테스트");
+//		boardPro.setUse("1");
+//		boardPro.setUserId("brown");
+//		
+//		/***When***/
+//		int insertCnt = boardDao.insertBoard(sqlSession, boardPro);
+//		sqlSession.commit();
+//		
+//		/***Then***/
+//		assertEquals(1, insertCnt);
+//	}
 	
 	@Test
 	public void getAllBoardTest() {
@@ -94,5 +97,6 @@ public class BoardDaoTest {
 		/***Then***/
 		assertEquals(1, updateCnt);		
 	}
+	
 
 }

@@ -1,14 +1,15 @@
 package kr.or.ddit.board.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.board.model.BoardPro;
+import kr.or.ddit.common.model.Page;
 
 public class BoardDao implements IBoardDao {
 
-	
 	@Override
 	public int insertBoard(SqlSession sqlSession, BoardPro boardPro) {
 		return sqlSession.insert("board.insertBoard", boardPro);
@@ -28,7 +29,7 @@ public class BoardDao implements IBoardDao {
 	public int updateBoard(SqlSession sqlSession, BoardPro boardPro) {
 		return sqlSession.update("board.updateBoard", boardPro);
 	}
-	
-	
+
+
 
 }

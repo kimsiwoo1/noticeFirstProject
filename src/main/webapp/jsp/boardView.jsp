@@ -24,33 +24,36 @@ $(document).ready(function(){
 	
 	//사용자 정보 클릭시 이벤트 핸들러
 	$(".postTr").on("click", function(){
+		if($(this).data("del") == 0){
+			
+			console.log("postTr click");
+			
+			//클릭된 tr 태그의 자식태그(td)중 첫번째 자식의 텍스트 문자열
+							
+			//td태그의 텍스트 가져오기(두번째 자식)
+			var tdText = $($(this).children()[1]).text();
+			console.log("tdText : " + tdText);
+			
+			//input태그에 저장된 값 확인
+			var inputValue = $(this).find("input").val();
+			console.log("inputValue : " + inputValue);
+			
+			//data속성으로 값 가져오기
+			//data속성명은 소문자로 치환된다!!
+			//data-userId $(this).data("userid");
+			//대소문자 주의!!!!!!
+			var dataValue = $(this).data("postno");
+			console.log("dataValue : " + dataValue);
+			
+			//input 태그에 값 설정
+			$("#postNo").val(dataValue);
+			
+			//form 태그이용 전송
+			console.log("serialize : "  + $("#frm").serialize());
+			
+			$("#frm").submit();
+		}
 		
-		console.log("postTr click");
-		
-		//클릭된 tr 태그의 자식태그(td)중 첫번째 자식의 텍스트 문자열
-						
-		//td태그의 텍스트 가져오기(두번째 자식)
-		var tdText = $($(this).children()[1]).text();
-		console.log("tdText : " + tdText);
-		
-		//input태그에 저장된 값 확인
-		var inputValue = $(this).find("input").val();
-		console.log("inputValue : " + inputValue);
-		
-		//data속성으로 값 가져오기
-		//data속성명은 소문자로 치환된다!!
-		//data-userId --> $(this).data("userid");
-		//대소문자 주의!!!!!!
-		var dataValue = $(this).data("postno");
-		console.log("dataValue : " + dataValue);
-		
-		//input 태그에 값 설정
-		$("#postNo").val(dataValue);
-		
-		//form 태그이용 전송
-		console.log("serialize : "  + $("#frm").serialize());
-		
-		$("#frm").submit();
 	});
 });
 </script>
@@ -59,6 +62,7 @@ $(document).ready(function(){
 <body>
 <form id="frm" action="${cp }/post" method="get">
 	<input type="hidden" id="postNo" name="postNo" />
+	<input type="hidden" id="boardNo" name="boardNo" value="${boardPro.boardNo }"/>
 </form>
 	
 	<!-- header -->
@@ -84,15 +88,26 @@ $(document).ready(function(){
 									<th>작성자 아이디</th>
 									<th>작성일시</th>
 								</tr>
-
 								<c:forEach items="${postList }" var="post" varStatus="loop">
-									<tr class="postTr" data-postNo="${post.postNo }" >
-										<input type="hidden" value="${post.postNo }"/>
-										<td>${post.postNo }</td>
-										<td>${post.postNm }</td>
-										<td>${post.userId }</td>
-										<td>${post.writeDate }</td>
-									</tr>
+									<c:set var="del" value="${post.del }"/>
+										<c:if test="${del =='0' }">
+											<tr class="postTr" data-postNo="${post.postNo }" data-del="${post.del }" >
+												<td>${post.postNo }</td>
+												<td>${post.postNm }</td>
+												<td>${post.userId }</td>
+												<td>${post.writeDate }</td>
+											</tr>
+										</c:if>
+										
+										<c:if test="${del =='1' }">
+											<tr class="postTr" data-postNo="${post.postNo }" data-del="${post.del }">
+												<td></td>
+												<td>[삭제된 게시글 입니다]</td>
+												<td></td>
+												<td></td>
+											</tr>
+										</c:if>
+										
 								</c:forEach>
 							</table>
 						</div>
@@ -113,7 +128,7 @@ $(document).ready(function(){
 										</c:when>
 										<c:otherwise>
 											<li>
-												<a href="${cp }/postNew?page=${pageVo.page-1 }" aria-label="Previous"> 
+												<a href="${cp }/boardView?boardNo=${boardPro.boardNo }&page=${pageVo.page-1 }" aria-label="Previous"> 
 													<span aria-hidden="true">&laquo;</span>
 												</a>
 											</li>
@@ -124,11 +139,11 @@ $(document).ready(function(){
 								<c:forEach begin="1" end="${paginationSize }" var="page">
 									
 									<c:choose>
-										<c:when test="${page == param.page }">
+										<c:when test="${page == params.page }">
 											<li class="active"><span>${page }</span></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${cp }/postNew?page=${page }">${page }</a></li>
+											<li><a href="${cp }/boardView?boardNo=${boardPro.boardNo }&page=${page }">${page }</a></li>
 										</c:otherwise>
 									</c:choose>
 									
@@ -142,7 +157,7 @@ $(document).ready(function(){
 									</c:when>
 									<c:otherwise>
 										<li>
-											<a href="${cp }/postNew?page=${pageVo.page+1 }" aria-label="Next"> 
+											<a href="${cp }/boardView?boardNo=${boardPro.boardNo }&page=${pageVo.page+1 }" aria-label="Next"> 
 												<span aria-hidden="true">&raquo;</span>
 											</a>
 										</li>
