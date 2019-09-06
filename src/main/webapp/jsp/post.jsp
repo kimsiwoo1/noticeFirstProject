@@ -27,9 +27,8 @@
 		})
 		
 		$('.writeDel').on("click", function(){
-			var writeNo = this.dataset.writeno;
-			console.log(writeNo);
-// 			location.href="${cp}/writeDelete?postNo="+${post.postNo }+"&boardNo="+${boardNo}
+			var commentNo = this.dataset.commentno;
+ 			location.href="${cp}/writeDelete?postNo="+${post.postNo }+"&boardNo="+${boardNo}+"&commentNo="+commentNo
 		})
 	})
 </script>
@@ -101,11 +100,11 @@
 									<c:forEach items="${writeList }" var="write">
 										<c:if test="${write != null}">
 											<c:if test="${write.del == '0'}">
-											${write.contents }&nbsp;[${write.writer } / ${write.writeDate }]<span class="writeDel" data-writeNo="${write.commentNo }">x</span><br>
+											${write.contents }&nbsp;[${write.writer } / ${write.writeDate }]<span class="writeDel" data-commentNo="${write.commentNo }">x</span><br>
 											</c:if>
 											
 											<c:if test="${write.del == '1'}">
-												[삭제된 댓글 입니다]
+												[삭제된 댓글 입니다]<br>
 											</c:if>
 										</c:if>
 									</c:forEach>
