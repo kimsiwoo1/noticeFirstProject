@@ -93,7 +93,11 @@ $(document).ready(function(){
 										<c:if test="${del =='0' }">
 											<tr class="postTr" data-postNo="${post.postNo }" data-del="${post.del }" >
 												<td>${post.postNo }</td>
-												<td>${post.postNm }</td>
+												<td>
+													<c:forEach begin="0" end="${(post.level-1)*2 }">
+														&nbsp;
+													</c:forEach>
+													${post.postNm }</td>
 												<td>${post.userId }</td>
 												<td>${post.writeDate }</td>
 											</tr>
@@ -102,7 +106,11 @@ $(document).ready(function(){
 										<c:if test="${del =='1' }">
 											<tr class="postTr" data-postNo="${post.postNo }" data-del="${post.del }">
 												<td></td>
-												<td>[삭제된 게시글 입니다]</td>
+												<td>
+													<c:forEach begin="0" end="${(post.level-1)*2 }">
+														&nbsp;
+													</c:forEach>
+													[삭제된 게시글 입니다]</td>
 												<td></td>
 												<td></td>
 											</tr>

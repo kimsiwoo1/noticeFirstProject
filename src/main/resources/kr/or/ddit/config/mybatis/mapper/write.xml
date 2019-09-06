@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="write">
+
+  <insert id="insertWrite" parameterType="writeVo">
+  	insert into writepro(commentNo, contents, writer, writeDate, postNo, userId, del)
+	values(COMMENTNO_SEQ.nextval, #{contents}, #{writer}, sysdate, #{postNo}, #{userId}, #{del})
+  </insert>
+  
+  <select id="getWrite" parameterType="Integer" resultType="writeVo">
+  	select * from writepro where postno = #{postNo}
+  </select>
+  
+  <update id="deleteWrite" parameterType="Integer">
+  	update writepro set del=1 where commentno=#{commentNo}
+  </update>
+  
+</mapper>

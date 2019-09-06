@@ -10,8 +10,15 @@ public class Post {
 	private int parentPostNo;
 	private String del;
 	private int gn;
+	private int level;
 	
 	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	public int getGn() {
 		return gn;
 	}

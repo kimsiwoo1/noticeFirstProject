@@ -25,6 +25,12 @@
 		$('#answer').on("click", function(){
 			location.href="${cp}/postAnswer?postNo="+${post.postNo }+"&boardNo="+${boardNo}+"&gn="+${post.gn}
 		})
+		
+		$('.writeDel').on("click", function(){
+			var writeNo = this.dataset.writeno;
+			console.log(writeNo);
+// 			location.href="${cp}/writeDelete?postNo="+${post.postNo }+"&boardNo="+${boardNo}
+		})
 	})
 </script>
 <style>
@@ -33,6 +39,10 @@
 		height : 30px;
 		display : inline-block;
 		vertical-align: top;
+	}
+	#comment{
+		width : 300px;
+		height : 30px;
 	}
 </style>
 </head>
@@ -80,8 +90,30 @@
 							<br>
 							<button>수정</button>
 							<input type="button" id="delete" name="delete" value="삭제"/>
-							<input type="button" id="answer" name="answer" value="답글"/>
+							<input type="button" id="answer" name="answer" value="답글"/><br>
 						</form>
+						
+						<form action="${cp}/write" method="post">
+							<input type="hidden" id="boardNo" name="boardNo" value="${boardNo }">
+							<input type="hidden" id="postNo" name="postNo" value="${post.postNo }">
+							<label for="postContents">댓글</label>
+								<div id="commentDiv">
+									<c:forEach items="${writeList }" var="write">
+										<c:if test="${write != null}">
+											<c:if test="${write.del == '0'}">
+											${write.contents }&nbsp;[${write.writer } / ${write.writeDate }]<span class="writeDel" data-writeNo="${write.commentNo }">x</span><br>
+											</c:if>
+											
+											<c:if test="${write.del == '1'}">
+												[삭제된 댓글 입니다]
+											</c:if>
+										</c:if>
+									</c:forEach>
+								</div>
+								<input type="text" id="contents" name="contents"/>
+							<button>댓글저장</button>
+						</form>
+						
 						</div>
 					</div>
 				</div>
